@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daily Habit Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="splash" id="splash" role="dialog" aria-label="Welcome"><div class="art"></div><p class="lab">Welcome back</p><h2>Every star you earn today builds who you become.</h2><button class="btn" id="go">Let's complete today</button></div>
+<main>
+<div id="home">
+  <div class="top">
+    <div><h1>Daily Habits</h1><h3 class="date" id="date"></h3></div>
+    
+  </div>
+  <div class="hero rv out-down" data-hid="hero">
+    <div class="txt"><p class="lab">Daily motivation</p><p class="quote" id="quote"></p></div>
+    <svg viewBox="0 0 600 110" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <circle class="st" cx="40" cy="22" r="1.6"/><circle class="st" cx="120" cy="40" r="1.2" style="animation-delay:.8s"/><circle class="st" cx="330" cy="18" r="1.6" style="animation-delay:1.4s"/><circle class="st" cx="430" cy="34" r="1.2" style="animation-delay:.4s"/><circle class="st" cx="560" cy="70" r="1.4" style="animation-delay:2s"/>
+      <g class="moon" style="transform:translate(430px,62px)"><circle class="moonbg" r="13"/><path class="moonlit" d="M0 -13A13 13 0 0 1 0 13A0.01 13 0 0 1 0 -13Z"/></g>
+      <g class="birds" style="transform:translate(135px,18px)">
+        <g class="bd" style="--d:0s"><path d="M-7 0Q-3.5 -5 0 0Q3.5 -5 7 0"/></g>
+        <g class="bd" style="transform:translate(-15px,8px);--d:.15s"><path d="M-6 0Q-3 -4.5 0 0Q3 -4.5 6 0"/></g>
+        <g class="bd" style="transform:translate(14px,10px);--d:.3s"><path d="M-5 0Q-2.5 -4 0 0Q2.5 -4 5 0"/></g>
+      </g>
+      <polygon class="m1" points="0,110 90,52 160,86 260,25 350,80 420,46 520,90 600,60 600,110"/>
+      <polygon class="m2" points="0,110 120,78 220,96 330,58 440,100 560,72 600,86 600,110"/>
+      <path class="gr1"/><path class="gr2"/>
+      <path class="trail" d="M40 106 Q150 92 210 70 T 260 27"/>
+      <path class="prog" d="M40 106 Q150 92 210 70 T 260 27"/>
+      <line class="pole" x1="260" y1="25" x2="260" y2="5"/><polygon class="flag" points="260,5 279,11 260,17"/>
+      <text class="mk" y="6" style="transform:translate(40px,106px)">★</text>
+    </svg>
+  </div>
+  <div class="dash rv out-down" data-hid="dash">
+    <div class="ringwrap">
+      <svg class="ringsvg" viewBox="0 0 80 80"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--blue)"/><stop offset="1" stop-color="#7cc4ff"/></linearGradient></defs><circle class="ring-bg" cx="40" cy="40" r="34"/><circle class="ring-fg" id="ringfg" cx="40" cy="40" r="34"/></svg>
+      <div class="pct" id="pct">0%</div>
+    </div>
+    <div><p class="lab">Today's progress</p><p class="big2"><b id="count">0 of 0</b> tasks completed</p><p class="sub2" id="remain"></p></div>
+    <div class="wkrow" id="wkrow"></div>
+    <div class="mini"><div><b id="st1">0</b><span>Best streak (days)</span></div><div><b id="st2">0</b><span>Stars earned this week</span></div></div>
+    <div class="xpline"><b id="lvl">Level 1</b><div class="xpbar"><i id="xpfill"></i></div><span id="xptxt">0 / 100 XP</span></div>
+  </div>
+  <div class="add">
+    <input id="newName" placeholder="What habit do you want to build?" maxlength="60" aria-label="New habit name">
+    <button class="addgo" id="addBtn" aria-label="Add habit"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+  </div>
+  <button class="addmore" id="moreBtn">More options: target, schedule, reminder</button>
+  <div id="list"></div>
+  <div class="card rv out-down" id="homeNotes" data-hid="hnotes"></div>
+  <div class="card rv out-down" id="charts" data-hid="charts"></div>
+</div>
+
+<div id="notes" hidden>
+  <div class="top" style="align-items:center;margin-bottom:14px"><h1 style="margin:0">Rituals</h1><button class="btn" id="newNote">+ New</button></div>
+  <input id="nsearch" placeholder="Search your notes" aria-label="Search notes" style="width:100%;margin-bottom:14px">
+  <div id="nlist"></div>
+</div>
+
+<div id="settings" hidden>
+  <div class="top" style="align-items:center;margin-bottom:18px"><h1 style="margin:0">Settings</h1></div>
+  <div id="settings-body"></div>
+</div>
+</main>
+<nav class="dock" id="dock" aria-label="Main">
+  <span class="blob"></span>
+  <button class="on" data-view="home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>Home</span></button>
+  <button data-view="notes" aria-label="Notes"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h7M9 17h5"/></svg><span>Notes</span></button>
+  <button data-view="settings" aria-label="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg><span>Settings</span></button>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
